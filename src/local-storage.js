@@ -1,5 +1,5 @@
 export const loadAuthToken = () => {
-    return localStorage.getItem('authToken');
+    return localStorage.getItem(null);
 };
 
 export const saveAuthToken = authToken => {
