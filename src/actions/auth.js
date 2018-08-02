@@ -33,6 +33,11 @@ export const authError = error => ({
     error
 });
 
+export const AUTH_WARNING = 'AUTH_WARNING'
+export const authWarning = () => ({
+    type: AUTH_WARNING
+});
+
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token
 const storeAuthInfo = (authToken, dispatch) => {
@@ -101,6 +106,3 @@ export const refreshAuthToken = () => (dispatch, getState) => {
         });
 };
 
-export const authWarning = () => ({
-    type: 'AUTH_WARNING'
-})

@@ -3,7 +3,8 @@ import {
     CLEAR_AUTH,
     AUTH_REQUEST,
     AUTH_SUCCESS,
-    AUTH_ERROR
+    AUTH_ERROR,
+    AUTH_WARNING
 } from '../actions/auth';
 
 const initialState = {
@@ -39,7 +40,7 @@ export default function reducer(state = initialState, action) {
             loading: false,
             error: action.error
         });
-    } else if (action.type === 'AUTH_WARNING') {
+    } else if (action.type === AUTH_WARNING) {
         return Object.assign({}, state, {
             warning: true
         })

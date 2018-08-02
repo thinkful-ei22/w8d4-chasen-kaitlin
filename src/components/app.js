@@ -57,17 +57,27 @@ export class App extends React.Component {
     }
 
     startWarningTimer() {
-        setTimeout(() => {
-            return <h1>You will be logged out in 1 minute</h1>, 
-            1 *  8 * 1000
-        })
+        if (this.props.loggedIn){
+            console.log('clicked');
+            setInterval(
+                () => this.props.dispatch(authWarning()), 
+                1 * 5 * 1000
+            );
+            this.refreshInterval = setInterval(
+                () => this.props.dispatch(clearAuth()),
+                1 * 8 * 1000 // Ten Seconds
+            );
+        }
     }
 
-    // warn() {
-    //     if(this.props.warning) {
-    //         return <h1>You will be logged out in 1 minute</h1>;
-    //     }
-    // }
+    warn() {
+        if(this.props.warning) {
+            return (
+            <h1>warning</h1>
+            
+            )
+        }
+    }
 
     render() {
         const refreshEveryFive = () => {
@@ -87,7 +97,8 @@ export class App extends React.Component {
         }
 
         return (
-            <div className="app" onClick={e => refreshEveryFive(e)}>
+            <div className="app" onClick={() => this.startWarningTimer()}>
+                {this.warn()}
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
